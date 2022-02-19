@@ -1,25 +1,34 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const AuthContext = createContext({})
 
 export default function AuthProvider({ children }) {
 
-    const [user, setUser] = useState('No user')
+    const [user, setUser] = useState([])
+    const navigate = useNavigate()
 
     const setUserInfo = (user) => {
-        localStorage.setItem('user', user)
+        localStorage.setItem('user', JSON.stringify(user))
         setUser(user)
+        navigate('/home')
     }
 
     const logout = () => {
         localStorage.removeItem('user')
-        setUser('No user')
+        setUser({})
+        navigate('/signin')
     }
 
     useEffect(() => {
         const oldUser = localStorage.getItem('user')
         // console.log(oldUser)
-        if (oldUser) setUser(oldUser)
+        if (oldUser) {
+            navigate('/home')
+            setUser(JSON.stringify(oldUser))
+        } else {
+            navigate('/login')
+        }
     }, [])
 
     return (

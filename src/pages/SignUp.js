@@ -1,4 +1,7 @@
 import React from 'react'
+import AuthForm from '../components/AuthForm'
+import { Link } from 'react-router-dom'
+import getObjForm from '../utils/form';
 // import { useState } from 'react';
 
 export default function SignUp() {
@@ -8,22 +11,18 @@ export default function SignUp() {
     //     email: '',
     //     password: ''
     // });
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        const data = getObjForm(e.target)
+        console.log(data)
+
+        // console.log('submit value', input)
+    }
 
     return (
         <>
-            <div>
-                <h1>Sign Up</h1>
-            </div>
-            <label>Name: </label>
-            <input type="text" className='name' />
-            <br />
-            <label>Email: </label>
-            <input type="text" className='email' />
-            <br />
-            <label>Password</label>
-            <input type="password" className='="password' />
-            <br />
-            <input type="button" value="Submit" />
+            <AuthForm isRegister={true} onSubmit={handleSubmit} />
+            <Link to="/signin">Signin</Link>
         </>
     )
 }
