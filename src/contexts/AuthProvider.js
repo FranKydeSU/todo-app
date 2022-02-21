@@ -9,14 +9,20 @@ export default function AuthProvider({ children }) {
     const navigate = useNavigate()
 
     const setUserInfo = (user) => {
-        localStorage.setItem('user', JSON.stringify(user))
+        localStorage.setItem('username', user)
         setUser(user)
         navigate('/home')
     }
 
+    const setToken = (token) => {
+        localStorage.setItem('token', token)
+    }
+
     const logout = () => {
+        console.log('logout')
         localStorage.removeItem('user')
-        setUser({})
+        localStorage.removeItem('token')
+        setUser([])
         navigate('/signin')
     }
 
@@ -25,7 +31,7 @@ export default function AuthProvider({ children }) {
         // console.log(oldUser)
         if (oldUser) {
             navigate('/home')
-            setUser(JSON.stringify(oldUser))
+            setUser(oldUser)
         } else {
             navigate('/login')
         }
@@ -37,7 +43,8 @@ export default function AuthProvider({ children }) {
                 user,
                 setUser,
                 setUserInfo,
-                logout
+                logout,
+                setToken
             }}>
             {children}
         </AuthContext.Provider>

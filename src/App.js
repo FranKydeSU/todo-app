@@ -15,8 +15,8 @@ import Id from './pages/Id';
 function App() {
 	return (
 		<Router>
-			<Navbar />
 			<AuthProvider>
+				<Navbar />
 				<Routes>
 					<Route path="/" element={<Home />} />
 					<Route path="/signin" element={<SignIn />} />

@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthProvider';
 
 export default function Navbar() {
+    const { logout } = useAuth()
     return (
         <>
             <div style={{
@@ -19,6 +21,7 @@ export default function Navbar() {
                 <div className="link">
                     <Link to="/signin">Sign in</Link>
                     <Link to="/signup">Sign up</Link>
+                    <button className="btn btn-primary" onClick={logout}>Logout</button>
                 </div>
             </div>
         </>

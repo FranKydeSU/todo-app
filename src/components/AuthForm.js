@@ -12,7 +12,6 @@ export default function AuthForm({ isRegister, onSubmit }) {
         password: ''
     });
 
-    const { user, setUserInfo, logout } = useAuth()
     // console.log(user)
 
     // Object inputing
@@ -47,7 +46,7 @@ export default function AuthForm({ isRegister, onSubmit }) {
                 <input type="checkbox" className="form-check-input" id="exampleCheck1" name="term" onChange={handleChange} />
                 <label className="form-check-label">Check me out</label>
             </div>
-            <button type="submit" className="btn btn-primary">Submit</button>
+            <button type="submit" className="btn btn-primary">{isRegister ? 'Sign Up' : 'Sign In'}</button>
         </form>
     )
 }
