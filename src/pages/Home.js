@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import TodoItem from '../components/TodoItem'
 import axios from 'axios'
-import AddTodoForm from '../components/AddTodoForm'
+
 import { useAuth } from '../contexts/AuthProvider';
+import TodoItem from '../components/TodoItem'
+import AddTodoForm from '../components/AddTodoForm'
 import getObjForm from '../utils/form';
 
 export default function Home() {
@@ -16,8 +17,8 @@ export default function Home() {
                 Authorization: `Bearer ${localStorage.getItem('token')}`
             }
         }).then(res => {
-            console.log(res.data);
             setTodos(res.data)
+            // console.log(res.data); // for see all tasks in this user.
         }).catch(err => console.log(err))
 
     }
@@ -39,7 +40,7 @@ export default function Home() {
     }
 
     function removeTodo(id) {
-        console.log('id', id)
+
         axios.delete(`https://saengthong-task-manager.herokuapp.com/tasks/${id}`,
             {
                 headers: {
@@ -55,8 +56,7 @@ export default function Home() {
     }
 
     function toggleTodo(id, status) {
-        console.log('id', id)
-        console.log('status', status)
+
         axios.patch(`https://saengthong-task-manager.herokuapp.com/tasks/${id}`,
             { completed: status },
             {
@@ -70,6 +70,7 @@ export default function Home() {
                 console.log('todos', todos)
             })
             .catch(err => console.log(err))
+
     }
 
     useEffect(() => {

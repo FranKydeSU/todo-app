@@ -48,8 +48,6 @@ export default function SignIn() {
             <h3>User: {user}</h3>
             <AuthForm isRegister={false} onSubmit={handleSubmit} />
             <Link to="/signup">Signup</Link>
-            <br />
-            <button className="btn btn-primary" onClick={logout}>Logout</button>
         </>
     )
 }
