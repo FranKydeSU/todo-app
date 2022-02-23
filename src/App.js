@@ -3,6 +3,7 @@ import {
 	BrowserRouter as Router,
 	Routes,
 	Route,
+	Navigate
 } from "react-router-dom";
 import SignIn from './pages/SignIn';
 import Home from './pages/Home';
@@ -20,8 +21,8 @@ function App() {
 					<Route path="/" element={<Home />} />
 					<Route path="/signin" element={<SignIn />} />
 					<Route path="/signup" element={<SignUp />} />
-					<Route path="/id/:id" element={<Id />} />
-					{/* <Route path="*" element={<Navigate to="/signin" />} /> */}
+					{/* <Route path="/id/:id" element={<Id />} /> */}
+					<Route path="*" element={<Navigate to="/signin" />} />
 				</Routes>
 			</AuthProvider>
 		</Router>

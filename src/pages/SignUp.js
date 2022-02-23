@@ -16,10 +16,10 @@ export default function SignUp() {
     const handleSubmit = async (e) => {
         e.preventDefault()
         const data = getObjForm(e.target)
-        console.log(data)
+        // console.log(data)
         signup(data).then(response => {
             setUserInfo(response.user.name)
-            console.log('response', response)
+            // console.log('response', response)
             navigate('/signin')
         })
             .catch(error => {

@@ -18,18 +18,18 @@ export default function SignIn() {
 
         e.preventDefault()
         const data = getObjForm(e.target)
-        console.log(data)
+        // console.log(data)
         signin(data).then(response => {
-            console.log('response', response.user)
+            // console.log('response', response.user)
             setUserInfo(response.user.name)
             setToken(response.token)
-            console.log('/')
-            navigate("/")
+                // console.log('/')
+            navigate('/')
         })
             .catch(error => {
                 setError(error.response.data)
-                console.log('error', error.response.data)
-            });
+                // console.log('error', error.response.data)
+            })
 
     }
 

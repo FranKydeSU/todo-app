@@ -11,7 +11,7 @@ export default function AuthProvider({ children }) {
     const setUserInfo = (user) => {
         localStorage.setItem('username', user)
         setUser(user)
-        navigate('/home')
+        navigate('/')
     }
 
     const setToken = (token) => {
@@ -30,13 +30,13 @@ export default function AuthProvider({ children }) {
         const oldUser = localStorage.getItem('username')
 
         if (oldUser) {
-            navigate('/')
             setUser(oldUser)
+            navigate('/')
         } else {
             navigate('/signin')
         }
 
-    }, [navigate])
+    }, [])
 
     return (
         <AuthContext.Provider
