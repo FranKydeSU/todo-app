@@ -20,20 +20,20 @@ export default function AuthProvider({ children }) {
 
     const logout = () => {
         console.log('logout')
-        localStorage.removeItem('user')
+        localStorage.removeItem('username')
         localStorage.removeItem('token')
         setUser([])
         navigate('/signin')
     }
 
     useEffect(() => {
-        const oldUser = localStorage.getItem('user')
+        const oldUser = localStorage.getItem('username')
         // console.log(oldUser)
         if (oldUser) {
-            navigate('/home')
+            navigate('/')
             setUser(oldUser)
         } else {
-            navigate('/login')
+            navigate('/signin')
         }
     }, [])
 

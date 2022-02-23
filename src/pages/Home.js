@@ -32,7 +32,7 @@ export default function Home() {
                 }
             })
             .then(res => {
-                console.log(res.data);
+                // console.log(res.data); // for see which add task is
                 setTodos((todos) => [...todos, res.data])
             })
             .catch(err => console.log(err))
@@ -48,7 +48,7 @@ export default function Home() {
                 }
             })
             .then(res => {
-                console.log(res.data);
+                // console.log(res.data); // for see which remove task is
                 setTodos(todos => todos.filter(todo => todo._id !== id))
             })
             .catch(err => console.log(err))
@@ -65,7 +65,7 @@ export default function Home() {
                 }
             })
             .then(res => {
-                console.log(res.data);
+                console.log(res.data); // for see which toggle task is
                 setTodos((todos) => todos.map((todo) => todo._id === id ? { ...todo, completed: status } : todo))
                 console.log('todos', todos)
             })
@@ -98,17 +98,18 @@ export default function Home() {
     }
 
     return (
-        <div>
-            <h2>{user}'s Todos</h2>
-            <AddTodoForm onAddTodo={onAddTodo} />
-            {!todos ?
-                'Loading'
-                :
-                todos.map((todo, key) =>
-                    <TodoItem todo={todo} key={key} onRemoveTodo={onRemoveTodo} onToggleTodo={onToggleTodo} />
-                )
-            }
-            {/* <TodoItem todo={mockTodo} /> */}
+        <div className="container">
+            <div className='main'>
+                <h2>{user}'s Todos</h2>
+                <AddTodoForm onAddTodo={onAddTodo} />
+                {!todos ?
+                    'Loading'
+                    :
+                    todos.map((todo, key) =>
+                        <TodoItem todo={todo} key={key} onRemoveTodo={onRemoveTodo} onToggleTodo={onToggleTodo} />
+                    )
+                }
+            </div>
         </div>
     )
 }

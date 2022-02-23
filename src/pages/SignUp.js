@@ -27,11 +27,11 @@ export default function SignUp() {
     }
 
     return (
-        <>
+        <div className='container'>
             <h2>Sign Up</h2>
             {error && <Alert />}
             <AuthForm isRegister={true} onSubmit={handleSubmit} />
             <Link to="/signin">Signin</Link>
-        </>
+        </div>
     )
 }

@@ -12,7 +12,7 @@ export default function Navbar() {
                 alignItems: "center",
                 padding: "0.5rem 3rem",
                 justifyContent: "space-between",
-            }}>
+            }} className="container">
                 <h3>
                     <Link to="/" style={{
                         textDecoration: "none"

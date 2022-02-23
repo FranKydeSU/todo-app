@@ -7,4 +7,4 @@ function getObjForm(target) {
     return dataObj
 }
 
-export default getObjForm 
+export default getObjForm
