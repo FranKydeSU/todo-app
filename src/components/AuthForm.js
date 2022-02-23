@@ -1,65 +1,56 @@
 import React from 'react'
-import { useState } from 'react'
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
-import { TextField, Box } from '@mui/material';
+import { TextField } from '@mui/material';
 
 export default function AuthForm({ isRegister, onSubmit }) {
-    //const navigate = useNavigate()
-
-    const [input, setInput] = useState({
-        email: '',
-        password: ''
-    });
-
-    // console.log(user)
-
-    // Object inputing
-    const handleChange = e => {
-        const { target } = e;
-        const { name } = target;
-        const value = name === 'term' ? target.checked : target.value;
-        setInput({
-            ...input,
-            [name]: value
-        });
-    }
 
     return (
-        <form onSubmit={onSubmit}>
+        <form noValidate autoComplete='off' onSubmit={onSubmit} className=''>
             {isRegister &&
                 <div className="mb-3">
-                    <label htmlFor="exampleInputEmail1" className="form-label">Full Name</label>
-                    <input type="text" className="form-control" name="name" onChange={handleChange} />
-                    {/* <TextField id="outlined-basic" label="Outlined" variant="outlined" /> */}
+                    <label>Username</label>
+                    <TextField
+                        required
+                        id="filled-required"
+                        label="Email"
+                        variant="filled"
+                        name="name"
+                        type="text"
+                        fullWidth
+                        size="small"
+                    />
                 </div>
             }
             <div className="mb-3">
-                <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
-                <input type="email" className="form-control" aria-describedby="emailHelp" name="email" onChange={handleChange} />
-                <Box component="form"
-                    sx={{
-                        '& .MuiTextField-root': { width: '100%' },
-                    }}
-                    noValidate
-                    autoComplete="off">
-                    <TextField
-                        required
-                        id="outlined-required"
-                        label="Email"
-                        name="email"
-                        type="email"
-                        onChange={handleChange}
-                    />
-                </Box>
-                <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
+                <label>Email address</label> <br />
+                <TextField
+                    required
+                    label="Email"
+                    variant="filled"
+                    name="email"
+                    type="text"
+                    fullWidth
+                    size="small"
+                />
+                <div className="form-text">We'll never share your email with anyone else.</div>
             </div>
             <div className="mb-3">
-                <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
-                <input type="password" className="form-control" id="exampleInputPassword1" name="password" onChange={handleChange} />
+                <label>Password</label>
+                <TextField
+                    required
+                    label="Password"
+                    variant="filled"
+                    name="password"
+                    type="password"
+                    fullWidth
+                    size="small"
+                />
             </div>
-            {isRegister ? <p>If you are register, please <Link to="/signin">sign in</Link> </p> : <p>If you are not register, please <Link to="/signup">sign up</Link> </p>}
-            <Button color="primary" variant="contained" type="submit" className="btn btn-primary">{isRegister ? 'Sign Up' : 'Sign In'}</Button>
+            <div className="mb-3 text-center">
+                {isRegister ? <p>If you are registerd, please <Link to="/signin">sign in here.</Link> </p> : <p>If you are not registerd, please <Link to="/signup">sign up</Link> here.</p>}
+                <Button color="primary" variant="contained" type="submit" className='text-center'>{isRegister ? 'Sign Up' : 'Sign In'}</Button>
+            </div>
         </form>
     )
 }

@@ -5,8 +5,10 @@ import { useAuth } from '../contexts/AuthProvider';
 import TodoItem from '../components/TodoItem'
 import AddTodoForm from '../components/AddTodoForm'
 import getObjForm from '../utils/form';
+import { List } from '@mui/material';
 
 export default function Home() {
+
     const [todos, setTodos] = useState()
     const { user } = useAuth()
 
@@ -65,9 +67,8 @@ export default function Home() {
                 }
             })
             .then(res => {
-                console.log(res.data); // for see which toggle task is
+                // console.log(res.data); // for see which toggle task is
                 setTodos((todos) => todos.map((todo) => todo._id === id ? { ...todo, completed: status } : todo))
-                console.log('todos', todos)
             })
             .catch(err => console.log(err))
 
@@ -83,7 +84,7 @@ export default function Home() {
 
         e.preventDefault()
         const data = getObjForm(e.target)
-        console.log(data)
+        // console.log(data)
         addTodo(data)
         e.target.reset()
 
@@ -98,18 +99,23 @@ export default function Home() {
     }
 
     return (
-        <div className="container">
-            <div className='main'>
-                <h2>{user}'s Todos</h2>
+        <div className="container d-flex justify-content-center main text-center">
+            <div className='m-3 p-3 col-8'>
+                <h2 className='mb-3'><span className='color-blue'>{user}</span>'s Todos</h2>
                 <AddTodoForm onAddTodo={onAddTodo} />
-                {!todos ?
-                    'Loading'
-                    :
-                    todos.map((todo, key) =>
-                        <TodoItem todo={todo} key={key} onRemoveTodo={onRemoveTodo} onToggleTodo={onToggleTodo} />
-                    )
-                }
+                <List
+                    sx={{ width: '100%', bgcolor: 'background.paper', maxHeight: "75vh", overflowY: "scroll" }} dense={false} disablePadding >
+                    {!todos ?
+                        <div className="spinner-border text-primary m-5" role="status">
+                            <span className="visually-hidden">Loading...</span>
+                        </div>
+                        :
+                        todos.map((todo, key) =>
+                            <TodoItem todo={todo} key={key} onRemoveTodo={onRemoveTodo} onToggleTodo={onToggleTodo} />
+                        )
+                    }
+                </List>
             </div>
-        </div>
+        </div >
     )
 }

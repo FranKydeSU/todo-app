@@ -5,7 +5,7 @@ const AuthContext = createContext({})
 
 export default function AuthProvider({ children }) {
 
-    const [user, setUser] = useState([])
+    const [user, setUser] = useState()
     const navigate = useNavigate()
 
     const setUserInfo = (user) => {
@@ -22,20 +22,21 @@ export default function AuthProvider({ children }) {
         console.log('logout')
         localStorage.removeItem('username')
         localStorage.removeItem('token')
-        setUser([])
+        setUser()
         navigate('/signin')
     }
 
     useEffect(() => {
         const oldUser = localStorage.getItem('username')
-        // console.log(oldUser)
+
         if (oldUser) {
             navigate('/')
             setUser(oldUser)
         } else {
             navigate('/signin')
         }
-    }, [])
+
+    }, [navigate])
 
     return (
         <AuthContext.Provider

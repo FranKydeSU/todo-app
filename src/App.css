@@ -4,12 +4,8 @@
     box-sizing: border-box;
 }
 
-.link > * {
-    margin-inline: 5px;
-    text-decoration: none;
-}
-
 .main {
-    height: 100vh;
-    background-color: antiquewhite;
+    height: 93vh;
+    background-color: rgb(255, 249, 241);
+    padding: 0;
 }

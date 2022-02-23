@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import { useAuth } from '../contexts/AuthProvider';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import AuthForm from '../components/AuthForm';
 import getObjForm from '../utils/form';
 import { signin } from '../services/auth'
@@ -34,7 +34,7 @@ export default function SignIn() {
     }
 
     return (
-        <div className='container d-flex justify-content-center'>
+        <div className='container d-flex justify-content-center main'>
             <div className='mt-5 w-50'>
                 <h2 className='text-center'>Sign In</h2>
                 {error && <Alert error={error} />}

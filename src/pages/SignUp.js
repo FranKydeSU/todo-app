@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import AuthForm from '../components/AuthForm'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 import getObjForm from '../utils/form';
 import { useAuth } from '../contexts/AuthProvider';
 import { signup } from '../services/auth';
@@ -11,6 +11,8 @@ export default function SignUp() {
     const { setUserInfo } = useAuth()
     const [error, setError] = useState()
 
+    const navigate = useNavigate()
+
     const handleSubmit = async (e) => {
         e.preventDefault()
         const data = getObjForm(e.target)
@@ -18,20 +20,22 @@ export default function SignUp() {
         signup(data).then(response => {
             setUserInfo(response.user.name)
             console.log('response', response)
+            navigate('/signin')
         })
             .catch(error => {
                 setError(error.response.data)
                 console.log('error', error.response.data)
             });
-        // console.log('submit value', input)
     }
 
     return (
-        <div className='container'>
-            <h2>Sign Up</h2>
-            {error && <Alert />}
-            <AuthForm isRegister={true} onSubmit={handleSubmit} />
-            <Link to="/signin">Signin</Link>
+        <div className='container d-flex justify-content-center main'>
+            <div className='mt-5 w-50'>
+                <h2 className='text-center'>Sign Up</h2>
+                {error && <Alert error={error} />}
+                {/* <h3>User: {user}</h3> */}
+                <AuthForm isRegister={true} onSubmit={handleSubmit} />
+            </div>
         </div>
     )
 }

@@ -1,29 +1,23 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthProvider';
+import { Button } from '@mui/material';
 
 export default function Navbar() {
-    const { logout } = useAuth()
+    const { logout, user } = useAuth()
     return (
         <>
-            <div style={{
+            <nav style={{
                 backgroundColor: "lightBlue",
                 display: "flex",
-                alignItems: "center",
+                alignSelf: "center",
                 padding: "0.5rem 3rem",
                 justifyContent: "space-between",
             }} className="container">
-                <h3>
-                    <Link to="/" style={{
-                        textDecoration: "none"
-                    }}>Todo</Link>
-                </h3>
+                <h3>TodoTasks</h3>
                 <div className="link">
-                    <Link to="/signin">Sign in</Link>
-                    <Link to="/signup">Sign up</Link>
-                    <button className="btn btn-primary" onClick={logout}>Logout</button>
+                    {user ? <Button color="secondary" variant="contained" type="submit" className="btn btn-primary" onClick={logout}>Logout</Button> : ''}
                 </div>
-            </div>
+            </nav>
         </>
     )
 }
